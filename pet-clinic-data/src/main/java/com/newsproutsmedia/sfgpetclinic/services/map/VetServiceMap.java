@@ -2,9 +2,11 @@ package com.newsproutsmedia.sfgpetclinic.services.map;
 
 import com.newsproutsmedia.sfgpetclinic.model.Vet;
 import com.newsproutsmedia.sfgpetclinic.services.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
     @Override
