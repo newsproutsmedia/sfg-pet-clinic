@@ -1,13 +1,13 @@
 package com.newsproutsmedia.sfgpetclinic.services.map;
 
 import com.newsproutsmedia.sfgpetclinic.model.Specialty;
-import com.newsproutsmedia.sfgpetclinic.services.SpecialtiesService;
+import com.newsproutsmedia.sfgpetclinic.services.SpecialtyService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class SpecialtiesMapService extends AbstractMapService<Specialty, Long> implements SpecialtiesService {
+public class SpecialtyMapService extends AbstractMapService<Specialty, Long> implements SpecialtyService {
 
 
     @Override
