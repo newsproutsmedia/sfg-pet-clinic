@@ -61,6 +61,10 @@ class OwnerControllerTest {
 
     @Test
     void processFindFormReturnMany() throws Exception {
+        // findAllByLastNameLike is a Spring Data JPA process that uses a naming convention to construct the method
+        // In this case, findAll() is coupled with the property LastName which will return all Owners where the LastName
+        // property matches the passed parameter
+
         when(ownerService.findAllByLastNameLike(anyString()))
                 .thenReturn(Arrays.asList(Owner.builder().id(1l).build(),
                         Owner.builder().id(2l).build()));

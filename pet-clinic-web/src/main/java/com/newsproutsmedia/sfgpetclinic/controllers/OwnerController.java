@@ -23,6 +23,7 @@ public class OwnerController {
         this.ownerService = ownerService;
     }
 
+    // used to lock down the "id" property so that it can't be manipulated by the user
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
