@@ -1,6 +1,7 @@
 package com.newsproutsmedia.sfgpetclinic.controllers;
 
 import com.newsproutsmedia.sfgpetclinic.model.Owner;
+import com.newsproutsmedia.sfgpetclinic.model.Pet;
 import com.newsproutsmedia.sfgpetclinic.model.PetType;
 import com.newsproutsmedia.sfgpetclinic.services.OwnerService;
 import com.newsproutsmedia.sfgpetclinic.services.PetService;
@@ -89,14 +90,54 @@ public class PetControllerTest {
 
         // send data via POST to /owners/1/pets/new
         mockMvc.perform(post("/owners/1/pets/new"))
-                // expect that the status is be ok
-                .andExpect(status().isOk())
+                // expect that the status to redirect
+                .andExpect(status().is3xxRedirection())
                 // expect that the view name of redirect:/owners/1 will be returned
                 .andExpect(view().name("redirect:/owners/1"));
 
         // check that a pet object was saved
         verify(petService).save(any());
 
+    }
+
+    @Test
+    void initUpdateForm() throws Exception {
+        when(ownerService.findById(anyLong())).thenReturn(owner);
+        when(petTypeService.findAll()).thenReturn(petTypes);
+        when(petService.findById(anyLong())).thenReturn(Pet.builder().id(2L).build());
+
+        mockMvc.perform(get("/owners/1/pets/2/edit"))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("owner"))
+                .andExpect(model().attributeExists("pet"))
+                .andExpect(view().name("pets/createOrUpdatePetForm"));
+    }
+
+    @Test
+    void processUpdateForm() throws Exception {
+        when(ownerService.findById(anyLong())).thenReturn(owner);
+        when(petTypeService.findAll()).thenReturn(petTypes);
+
+        mockMvc.perform(post("/owners/1/pets/2/edit"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/1"));
+
+        verify(petService).save(any());
+    }
+
+    @Test
+    void populatePetTypes() {
+        //todo impl
+    }
+
+    @Test
+    void findOwner() {
+        //todo impl
+    }
+
+    @Test
+    void initOwnerBinder() {
+        //todo impl
     }
 
 }

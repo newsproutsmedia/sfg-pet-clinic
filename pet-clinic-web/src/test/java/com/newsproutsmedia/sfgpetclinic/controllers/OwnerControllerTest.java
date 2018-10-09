@@ -1,6 +1,5 @@
-package com.newsproutsmedia.sfgpetclinic;
+package com.newsproutsmedia.sfgpetclinic.controllers;
 
-import com.newsproutsmedia.sfgpetclinic.controllers.OwnerController;
 import com.newsproutsmedia.sfgpetclinic.model.Owner;
 import com.newsproutsmedia.sfgpetclinic.services.OwnerService;
 import org.junit.jupiter.api.BeforeEach;
